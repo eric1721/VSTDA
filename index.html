@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app='app'>
+
+<head>
+    <meta charset='utf-8'>
+    <title> Get Er Done </title>
+</head>
+
+<body>
+    <div class='jumbotron' style='text-allign: center;'>
+        <h1>Tasks to Accomplish </h1>
+    </div>
+    <div ng-controller='TodoController as todoCtrl' class='container'>
+        <form>
+            <input type="text" ng-model="todoCtrl.Input.name" placeholder="Add a task to crush" />
+            <select type='text' ng-model='todoCtrl.Input.priority' ng-options='priority as priority.type for priority in todoCtrl.priorities'></select>
+            <button ng-click= 'todoCtrl.create()'class='btn btn-primary'>Add to list</button>
+        </form>
+
+        <ul>
+            <li ng-repeat='item in todoCtrl.tasks'>
+                {{item.name}}
+            </li>
+        </ul>
+
+        <div class="col-md-8">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger" ng-click="todoCtrl.sortField = '-priority.number' ">Order by high priority</button>
+                        <button type="button" class="btn btn-primary" ng-click="todoCtrl.sortField = 'priority.number'">Order by low priority</button>
+                        <button type="button" class="btn btn-default" ng-click="todoCtrl.sortField = 'name'">Order alphabetically</button>
+                    </div>
+                    <ul style="list-style: none">
+                        <li style="margin: 0;" ng-repeat="item in todoCtrl.tasks | orderBy: todoCtrl.sortField">{{item.name}}</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+            <br>
+    </div>
+
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src='vstda.js'></script>
+</body>
+
+</html>
